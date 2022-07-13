@@ -1,0 +1,3 @@
+[submodule "ethereum-payment-service"]
+	path = ethereum-payment-service
+	url = https://github.com/giantnerd123/ethereum-payment-service
