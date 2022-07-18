@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 
 // import postRoutes from './routes/posts.js';
 import userRoutes from './routes/users.js';
+import requestRoutes from './routes/requests.js';
 // import calorieRoutes from './routes/calories.js';
 
 const app = express();
@@ -18,15 +19,14 @@ app.use(cors());
 
 // app.use('/posts', postRoutes);
 app.use('/users', userRoutes);
+app.use('/requests', requestRoutes);
 // app.use('/calories', calorieRoutes);
 
-
+const CONNECTION_URL = process.env.CONNECTION_URL
 const PORT = process.env.PORT || 5001;
 
-mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.CONNECTION_URL)
   .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
-  .catch((error) => console.log(`${error} did not connect`));
+  .catch((error) => console.log(error + 'did not connect'));
 
-// mongoose.set('useFindAndModify', false);
-
-// app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`))
+export default mongoose

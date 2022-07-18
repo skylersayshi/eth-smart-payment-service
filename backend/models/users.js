@@ -5,15 +5,16 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    walletAddress: {
-        type: String,
-        required: true
-    },
+    walletAddress: String,
     twitter: {
         type: String
     },
     bio: {
         type: String
+    },
+    followers: {
+        type: [String],
+        default: []
     },
     createdAt: {
         type: Date,
@@ -22,4 +23,6 @@ const userSchema = mongoose.Schema({
     profilePic: String
 });
 
-export default mongoose.model("User", userSchema);
+const User = mongoose.model('User', userSchema);
+
+export default User;
