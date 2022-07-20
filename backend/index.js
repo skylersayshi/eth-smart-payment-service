@@ -3,11 +3,9 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-
-// import postRoutes from './routes/posts.js';
-import userRoutes from './routes/users.js';
-import requestRoutes from './routes/requests.js';
-// import calorieRoutes from './routes/calories.js';
+import userRoutes from './routes/users.js'
+import requestRoutes from './routes/requests.js'
+import transactionRoutes from './routes/transactions.js'
 
 const app = express();
 
@@ -17,10 +15,9 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 app.use(cors());
 
-// app.use('/posts', postRoutes);
-app.use('/users', userRoutes);
-app.use('/requests', requestRoutes);
-// app.use('/calories', calorieRoutes);
+app.use('/users', userRoutes)
+app.use('/requests', requestRoutes)
+app.use('/transactions', transactionRoutes)
 
 const CONNECTION_URL = process.env.CONNECTION_URL
 const PORT = process.env.PORT || 5001;

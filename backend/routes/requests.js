@@ -1,11 +1,12 @@
-import express from 'express';
+import express from 'express'
 
-import {getRequests, createRequest} from '../controllers/requests.js'
+import { getRequests, createRequest, deleteRequest } from '../controllers/requests.js'
 
-const router = express.Router();
+const router = express.Router()
 
 
-router.get('/', getRequests);
-router.post('/new', createRequest);
+router.get('/', getRequests)
+router.post('/new', createRequest)
+router.delete('/:id', deleteRequest)
 
-export default router;
+export default router

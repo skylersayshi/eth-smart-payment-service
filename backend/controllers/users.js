@@ -1,7 +1,7 @@
-import User from "../models/users.js";
-import express from "express";
-import mongoose from "mongoose";
-const router = express.Router();
+import User from "../models/users.js"
+import express from "express"
+import mongoose from "mongoose"
+const router = express.Router()
 
 export const getUsers = async (req, res) =>{
     try{
@@ -10,46 +10,46 @@ export const getUsers = async (req, res) =>{
 
         res.status(200).json(users);
     } catch(error){
-        res.status(404).json({message: error.message});
+        res.status(404).json({message: error.message})
     }
 }
 
 export const createUser = async (req, res) =>{
-    const user = req.body;
-    const newUser = new User({...user, createdAt: new Date().toISOString()});
+    const user = req.body
+    const newUser = new User({...user, createdAt: new Date().toISOString()})
 
     try{
         await newUser.save();
-        res.status(201).json(newUser);
+        res.status(201).json(newUser)
     } catch(error){
-        res.status(409).json({message: error.message});
+        res.status(409).json({message: error.message})
     }
 }
 
-// export const updateUser = async (req, res) =>{
-//     const { id } = req.params;
-//     const { title, message, creator, selectedFile, tags } = req.body;
+export const updateUser = async (req, res) =>{
+    const { id } = req.params
+    const { name, twitter, bio, profilePic, city } = req.body
     
-//     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`)
 
-//     const updatedUser = { creator, title, message, tags, selectedFile, _id: id };
+    const updatedUser = { name, twitter, bio, profilePic, city, _id: id }
 
-//     await User.findByIdAndUpdate(id, updatedPost, { new: true });
+    await User.findByIdAndUpdate(id, updatedUser, { new: true })
 
-//     res.json(updatedPost);
-// }
+    res.json(updatedUser)
+}
 
-// export const deleteUser = async (req, res) =>{
-//     const { id } = req.params;
+export const deleteUser = async (req, res) =>{
+    const { id } = req.params
 
-//     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`)
 
-//     await PostMessage.findByIdAndRemove(id);
+    await User.findByIdAndRemove(id)
 
-//     res.json({message: 'This post has been successfully deleted'})
-// }
+    res.json({message: 'This post has been successfully deleted'})
+}
 
-// export const likePost = async (req,res) =>{
+// export const followUser = async (req,res) =>{
 //     const {id} = req.params;
 //     if(!req.userId){ return res.json({message: 'Not authenticated'})};
 //     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);

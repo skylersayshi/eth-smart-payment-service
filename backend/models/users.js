@@ -20,7 +20,8 @@ const userSchema = mongoose.Schema({
         type: Date,
         default: new Date()
     },
-    profilePic: String
+    profilePic: String,
+    city: String
 });
 
 const User = mongoose.model('User', userSchema);
