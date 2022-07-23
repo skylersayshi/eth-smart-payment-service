@@ -19,6 +19,10 @@ app.use('/users', userRoutes)
 app.use('/requests', requestRoutes)
 app.use('/transactions', transactionRoutes)
 
+app.get('/', (req, res)=>{
+  res.send('APP IS RUNNING')
+})
+
 const CONNECTION_URL = process.env.CONNECTION_URL
 const PORT = process.env.PORT || 5001;
 
